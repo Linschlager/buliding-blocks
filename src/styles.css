@@ -1,0 +1,13 @@
+:root {
+  --grid-element-size: 40px;
+}
+body {
+  background: white;
+  background-image: radial-gradient(
+    circle at calc(var(--grid-element-size) - 1px)
+      calc(var(--grid-element-size) - 1px),
+    lightgray 1px,
+    transparent 0
+  );
+  background-size: var(--grid-element-size) var(--grid-element-size);
+}
