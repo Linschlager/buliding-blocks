@@ -1,13 +1,18 @@
-import { GRID_SIZE } from "./consts";
+import { GRID_SIZE } from "../resources/consts";
 
-export default class Square {
+/**
+ * Data class for squares
+ */
+export default class Rectangle {
   #x;
   #y;
-  #size;
-  constructor(x, y, size) {
+  #sizeX;
+  #sizeY;
+  constructor(x, y, width, height) {
     this.#x = x;
     this.#y = y;
-    this.#size = size;
+    this.#sizeX = width;
+    this.#sizeY = height;
   }
 
   getX() {
@@ -18,19 +23,23 @@ export default class Square {
     return this.#y;
   }
 
-  getSize() {
-    return this.#size;
+  getSizeX() {
+    return this.#sizeX;
+  }
+
+  getSizeY() {
+    return this.#sizeY;
   }
 
   /**
    * O(n^4) This is so bad
-   * @param {Square} other
+   * @param {Rectangle} other
    */
   intersects(other) {
-    for (let i = 0; i < this.getSize(); i++) {
-      for (let j = 0; j < this.getSize(); j++) {
-        for (let a = 0; a < other.getSize(); a++) {
-          for (let b = 0; b < other.getSize(); b++) {
+    for (let i = 0; i < this.getSizeX(); i++) {
+      for (let j = 0; j < this.getSizeY(); j++) {
+        for (let a = 0; a < other.getSizeX(); a++) {
+          for (let b = 0; b < other.getSizeY(); b++) {
             if (
               this.getX() + i * GRID_SIZE === other.getX() + a * GRID_SIZE &&
               this.getY() + j * GRID_SIZE === other.getY() + b * GRID_SIZE

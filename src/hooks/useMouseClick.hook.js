@@ -1,4 +1,6 @@
 import { useEffect } from "react";
+import attachListener from "../tools/attachListener";
+import { MOUSE_CLICK } from "../resources/consts";
 
 const useMouseClick = (callback) => {
   useEffect(() => {
@@ -8,8 +10,8 @@ const useMouseClick = (callback) => {
         callback(clientX, clientY);
       }
     };
-    window.addEventListener("mouseup", handleMouseClick);
-    return () => window.removeEventListener("mouseup", handleMouseClick);
+
+    return attachListener(MOUSE_CLICK, handleMouseClick);
   }, [callback]);
 };
 
